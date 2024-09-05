@@ -32,8 +32,8 @@ jobs:
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USERNAME }}
+          username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.PRIVATE_KEY }}
           # 서버에 파일만 배포
           source: dist/*
-          target: ~/deploy/dist
+          target: ~/deploy
