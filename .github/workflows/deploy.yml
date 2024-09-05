@@ -37,7 +37,7 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           # 서버에 파일만 배포
           source: dist/*
-          target: ~/deploy
+          target: ~/dist
           
       - name: Notify Discord
         uses: sarisia/actions-status-discord@v1
