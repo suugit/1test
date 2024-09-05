@@ -16,14 +16,15 @@ jobs:
       - name: Setup .env
         run: |
           echo "${{ secrets.DOT_ENV }}" > .env
-      #별도 설치
-      - uses: actions/setup-node@v4
-      - run: npm install axios
 
       - uses: actions/setup-node@v4
         with:
           node-version: 20
       - run: npm ci
+      
+      #별도 설치
+      - uses: actions/setup-node@v4
+      - run: npm install axios
 
       - name: Build
         run: npm run build
@@ -38,11 +39,11 @@ jobs:
           source: dist/*
           target: ~/deploy
           
-      - name: Discord Alert
+      - name: Notify Discord
         uses: sarisia/actions-status-discord@v1
         if: always()
         with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          webhook: ${{ secrets.DISCORD_WEBHOOK_URL }}
           title: 배포 상태
           description: ${{ job.status == 'success' && '배포성공' || '배포실패' }}
           color: ${{ job.status == 'success' && '0x00ff00' || '0xff0000' }} 
