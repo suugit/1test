@@ -16,9 +16,9 @@ jobs:
       - name: Setup .env
         run: |
           echo "${{ secrets.DOT_ENV }}" > .env
-
-
-
+      
+      - uses: actions/setup-node@v4
+      - run: npm install axios
 
       - uses: actions/setup-node@v4
         with:
