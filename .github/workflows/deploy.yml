@@ -13,9 +13,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup .env
+      - name: Setup .env with REACT_APP_ secrets
         run: |
-          echo "${{ secrets.DOT_ENV }}" > .env
+          # Filter and export secrets that start with REACT_APP_
+          echo "Creating .env file"
+          touch .env
+
+          # Loop through each secret and add to .env if it starts with REACT_APP_
+          for var in $(printenv | grep ^REACT_APP_); do
+            echo "$var" >> .env
+          done
+
+          cat .env
 
       - uses: actions/setup-node@v4
         with:
