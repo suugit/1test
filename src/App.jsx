@@ -31,6 +31,7 @@ const App = () => {
           <Route path='/received-audio' element={<ReceivedAudioPage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/register' element={<RegisterPage />} />
+          <Route path='/test' element={<TestPage />} />
         </Routes>
         <Footer />
       </Container>
